@@ -4,7 +4,7 @@ The counter is opt-in in the app. When enabled, one random installation UUID is 
 
 The feedback form is separate from the counter consent: nothing is sent until the user submits a message. The Worker forwards only the selected category, message and app version to the Veloly Discord webhook. It never sends songs or listening history. A hash of a random local client ID is kept in D1 for at most 24 hours to enforce a one-minute cooldown.
 
-The GitHub Pages site is static, so it cannot safely store an admin password or write protected statistics by itself. This Cloudflare Worker + D1 service provides the write endpoint and password-protected admin API. The admin page is `https://noob20-crt.github.io/Veloly/admin.html`; the page asks for the Worker URL and the admin token each time and does not save either.
+The static site cannot safely store an admin password or write protected statistics by itself. This Cloudflare Worker + D1 service provides the write endpoint and password-protected admin API. The admin page is available at `https://veloly-site.vercel.app/admin` (or `/admin.html`); the page asks for the Worker URL and the admin token each time and does not save either.
 
 ## One-time Cloudflare setup
 

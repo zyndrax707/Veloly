@@ -7,6 +7,7 @@ interface Env {
 const RATE_WINDOW_SECONDS = 15 * 60;
 
 const allowedOrigins = new Set([
+  "https://veloly-site.vercel.app",
   "https://noob20-crt.github.io",
   "https://zyndrax707.github.io",
   "tauri://localhost",
