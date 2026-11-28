@@ -1,93 +1,77 @@
 <p align="center">
-  <img src="LOGObanie_edited.jpg" width="500" alt="Veloly" />
+  <img src="LOGObanie_edited.jpg" width="420" alt="Veloly" />
 </p>
 
 <h1 align="center">Veloly</h1>
 
 <p align="center">
-  A light, fast music player, written in Rust with Tauri.<br />
-  <a href="https://zyndrax707.github.io/Veloly/">Website</a> ·
-  <a href="https://zyndrax707.github.io/Veloly/docs/">Documentation</a> ·
-  <a href="https://github.com/zyndrax707/Veloly/releases/latest">Download</a>
+  A free, open-source music player for your own library and online discovery.<br />
+  <a href="https://veloly-site.vercel.app/">Website</a> ·
+  <a href="https://github.com/zyndrax707/Veloly/tree/main/docs">Documentation</a> ·
+  <a href="https://veloly-site.vercel.app/ios.html">iPhone and iPad guide</a> ·
+  <a href="https://github.com/zyndrax707/Veloly/releases/latest">Downloads</a>
 </p>
 
 <p align="center">
-  <img src="site/assets/shot-discover.jpg" width="860" alt="Veloly's Discover page with music playing" />
+  <img src="site/assets/shot-discover.jpg" width="860" alt="Veloly Discover page" />
 </p>
 
 <p align="center">
-  <img src="site/assets/shot-lyrics.jpg" width="425" alt="Veloly's lyrics and now-playing view" />
-  <img src="site/assets/shot-artist.jpg" width="425" alt="Michael Jackson's artist page in Veloly" />
+  <img src="site/assets/shot-lyrics.jpg" width="425" alt="Veloly lyrics and player" />
+  <img src="site/assets/shot-artist.jpg" width="425" alt="An artist page in Veloly" />
 </p>
 
-> [!NOTE]
-> **Contributions:** 555 is developed by its author alone, so pull requests are turned off.
-> - **Bugs and ideas:** open an [issue](https://github.com/zyndrax707/Veloly/issues), they're all read.
-> - **Your own version:** you're free to fork 555 and build it your way, under the GPL-3.0.
+Veloly is an independent project based on [555](https://github.com/amonre555/555). It has its own name, visual identity, website and release builds, and is not affiliated with the 555 project. See the [GPL-3.0-or-later license](LICENSE).
 
-## Based on 555
+## What Veloly can do
 
-Veloly is an independent modified version based on [555](https://github.com/amonre555/555), created by its original author. Veloly is not affiliated with or connected to the 555 project. It is distributed under the [GPL-3.0-or-later license](LICENSE); see [NOTICE.md](NOTICE.md) for preserved attribution.
+### Find and play music
 
-## Features
+- Search and discover tracks, artists and albums using Deezer metadata and artwork, with audio streamed from YouTube Music. Spotify is supported as a playlist import source; it is not an audio provider in Veloly.
+- Browse artist and album pages, charts, recommendations, listening statistics and a yearly listening recap.
+- See lyrics when a provider has them. Veloly looks for lyrics from LRCLIB and NetEase when the lyrics view is opened; synchronized lyrics follow playback when timing data is available.
+- On desktop, use the optional Discord Rich Presence setting to show the playing track and progress in Discord.
 
-- **Your local library**: MP3, FLAC, OGG, M4A/AAC, WAV, AIFF… scanned in parallel on every core, cached on disk, instant search.
-- **One source for the info, one for the sound** (like Nuclear):
-  - **Deezer** (public API, no key): search, charts, clean titles and albums, 1000 × 1000 covers.
-  - **YouTube Music**: at play time, 555 looks for the same recording (title, artist, length, skipping live, remix, sped-up versions…) through [rustypipe](https://codeberg.org/ThetaDev/rustypipe). YouTube search is still available for versions Deezer doesn't have.
-- **Instant start**: the audio stream's direct address (from rustypipe) starts the song in ~0.3 s, while [yt-dlp](https://github.com/yt-dlp/yt-dlp) starts in parallel and takes over seamlessly if YouTube cuts the direct stream. Both deliver the very same file into one buffer: the fastest one wins.
-- **Progressive streaming**: playback starts while downloading, and seeking is instant.
-- **Prefetching**: the next song, the first search result and hovered songs are downloaded ahead of time into memory (8 songs at most).
-- **No telemetry or update checks**: the app only contacts music services for search, playlists, artwork and audio. App updates are installed manually. Desktop YouTube playback uses an existing local yt-dlp installation; Veloly never downloads or updates it.
-- **Lyrics on demand**: synchronized lyrics are fetched from LRCLIB and NetEase when the lyrics panel is opened.
-- **Artist pages**: photo, popular songs, albums, singles and EPs, similar artists. Every artist of a song (features included) is clickable on its own.
-- **Album pages**: cover, artists, year, length, track list and label. An album's name is clickable everywhere.
-- **Liked songs and playlists**: a heart on every song, and playlists that mix the local library, Deezer and YouTube. Right-click or "⋯" on a song to add it, drag and drop to reorder, click the name to rename. Everything is kept in `Veloly/collection.json` under the app data directory, isolated from 555's playlists and preferences.
-- **Listening history**: every play (after 20 s of listening), grouped by day with the time, plus your most played songs.
-- **Shuffle, repeat (queue or song) and crossfade** from 1 to 12 s (two mixed players, constant-power curves).
-- **Resume**: on launch, 555 brings back the last song, the queue and the position.
-- **Playlist import** from a Spotify link (no account: songs are found on Deezer), Deezer or YouTube Music.
-- **English and French**, switchable in Settings → General (English by default).
-- **Media keys and the system media panel** (Windows, MPRIS on Linux, macOS), with title, artist and cover.
-- **Blue on black**: deep electric-blue to black gradients, a fine paper grain, wide titles (Unbounded) and clean text (Manrope), dark glass, and pages that change through a soft blur.
-- **Now playing view**: the cover flies out of the player over a violet-to-black backdrop.
+Online search, streaming, artwork, lyrics, playlist links and update checks need an internet connection. On desktop, YouTube playback requires `yt-dlp` installed on the computer; Veloly does not download or update it. Mobile playback uses the app's native YouTube stream path and does not require `yt-dlp`.
 
-## Install
+### Your music and playlists
 
-Installers are in the [Releases](https://github.com/zyndrax707/Veloly/releases): `.dmg` for macOS (Apple Silicon and Intel), `-setup.exe` for Windows. Veloly does not check for or install updates; download and install a new release manually.
+- Add your own audio files to the local library. Desktop can scan music folders; Android and iPhone/iPad can import files with the system file picker.
+- Play local files offline. **Offline mode filters playback to files already in your library**; Veloly does not download streamed tracks from YouTube, Deezer or Spotify for offline listening.
+- Like tracks, create playlists, add the same track more than once, sort playlists by title, album or duration, and reorder tracks with drag and drop. Reorder **Next Up** in the queue as well.
+- Import playlist links from Spotify, Deezer, YouTube Music or Veloly. Imported services are matched to tracks that Veloly can find; private or unavailable tracks may not import.
+- Share a Veloly playlist through a link. The link contains track metadata, not local audio files or file paths. Creating or opening a shared link requires internet access.
+- Export and restore a collection backup. Backups move playlists, liked tracks and listening history between devices; they do not continuously sync them.
+- Keep a listening history, view listening statistics, and resume the previous song, queue and position on launch.
 
-The app isn't signed by Apple or Microsoft:
-- **macOS**: on first launch, right-click 555 → "Open" (or `xattr -cr /Applications/555.app`);
-- **Windows**: "More info" → "Run anyway".
+### Shape the sound and the interface
 
-**Android** (8 or later): `_android.apk` in the same Releases. Open it on the phone and allow your browser or file manager to install apps; Play Protect may warn you since 555 isn't on the Play Store ("More details" → "Install anyway"). To update, install the new APK over the old one. On Android, music keeps playing with the screen off, with the controls on the lock screen and in the notification.
+- Adjust playback with a four-band equalizer, draggable frequency points, presets (including Vocal, Rock and Acoustic), radio and reverb effects, and playback speed.
+- Set a crossfade of up to 12 seconds, use the sleep timer, change the output device where supported, and control playback with customizable keyboard shortcuts.
+- Choose a color from presets or the color wheel, preview it before applying, and toggle glow effects. Import CSS themes, write Custom CSS and preview or cancel a theme before applying it.
+- Adjust text size, contrast and motion, and choose which Discover sections appear and in what order.
+- Switch between English and French. A short interactive tour is available on first launch and can be replayed from Settings.
 
-**iPhone and iPad** (iOS 15 or later): `_ios.ipa` in the same Releases, installed with [SideStore](https://sidestore.io), which signs it with your own Apple Account. Step-by-step guide: https://zyndrax707.github.io/Veloly/ios.html . SideStore renews the app every 7 days and offers updates.
+## Privacy and network use
 
-To build it yourself, with an Android phone plugged in (USB debugging on): `sh scripts/android.sh`.
+Veloly has no user accounts, profile pages, ads or playlist synchronization. Your library, playlists, likes, history, settings and theme preferences are stored locally on the device.
 
-**Build for iPhone/iPad:** iOS builds require macOS with Xcode installed and initialized. From `app/`, run `npm install`, then `npm run ios:init` once, `npm run ios:dev` to run on a simulator or connected device, and `npm run ios:build` to generate the iOS package. Installing on a physical device or distributing through TestFlight/App Store also requires Apple code signing. The iOS target declares background audio so playback can continue when the screen is locked.
+The app contacts online music and lyrics providers for the features above. It also checks for app updates: desktop builds use the Tauri updater, while Android and iOS check GitHub Releases and open the relevant installer or SideStore flow. If the release build includes the telemetry service, the first-launch counter is **opt-in** in Settings; disabling it asks the service to remove that installation's count. Feedback is sent only when you submit it in the app. Playlist sharing sends the playlist's title and track metadata to the Veloly link service so it can create a share URL. See the [privacy guide source](docs/guide/privacy.md).
 
-## Structure
+## Get Veloly
 
-```
-crates/yato-core/   Rust core, independent of the UI
-  src/source.rs        MusicSource trait: adding a source = implementing it
-  src/sources/         Built-in sources (local, deezer, youtube)
-  src/stream.rs        Progressive HTTP / process reader (several sources can fill one buffer)
-  src/player.rs        Audio engine (rodio + symphonia) and queue
-  src/collection.rs    Liked songs, playlists and history (collection.json)
-app/                 Interface (SolidJS + Vite)
-  src/i18n.ts          Translations (English, French)
-app/src-tauri/       Tauri bridge: commands, events, cover:// protocol
-site/                Website (GitHub Pages)
-```
+Download the latest available platform build from [GitHub Releases](https://github.com/zyndrax707/Veloly/releases/latest). Release assets may vary while a platform build is running or being prepared.
 
-The core doesn't know about Tauri: the same core powers the desktop app and the Android, iPhone and iPad versions (Tauri v2).
+- **Windows:** run the `.exe` setup installer. If SmartScreen warns, choose **More info → Run anyway**.
+- **macOS:** open the `.dmg` and move Veloly to Applications. Builds are not notarized by Apple; macOS may require **Open Anyway** in Privacy & Security on first launch.
+- **Android 8+:** install the `.apk` and allow the browser or file manager to install apps. Android asks you to confirm installation of an update.
+- **iPhone and iPad (iOS 15+):** install the `.ipa` with [SideStore](https://sidestore.io), which signs it with your Apple Account. SideStore handles renewals and updates. Follow the [iOS installation guide](https://veloly-site.vercel.app/ios.html). Veloly is not on the App Store.
 
-## Run from source
+Windows and macOS can install signed desktop updates from inside Veloly when a compatible release is available. On Android, the update button opens the APK installer. On iPhone and iPad, updates are handled by SideStore.
 
-Requirements: stable Rust, Node.js 22+, MSVC build tools (Windows). Desktop YouTube playback also requires yt-dlp to be installed on the system (PATH or winget); Veloly does not download or update it.
+## Build from source
+
+Requirements: stable Rust, Node.js 22 or later, and platform build tools. Desktop YouTube playback also needs `yt-dlp` installed on the system.
 
 ```bash
 cd app
@@ -95,55 +79,45 @@ npm install
 npm run tauri dev
 ```
 
-Optimized build: `npm run tauri build`.
+Create an optimized desktop build with `npm run tauri build`.
 
-On Windows, if the project folder is very deep, the linker can hit the 260-character limit. Build elsewhere, for example `set CARGO_TARGET_DIR=C:\555-target`.
+For Android, install Android Studio and its SDK/NDK, enable USB debugging on a connected device, then follow the [Android build script](scripts/android.sh) or the [installation guide source](docs/guide/install.md).
 
-To work on the interface in a browser, without Tauri: `npm run dev` then http://localhost:1420. The core is then simulated (sample songs and lyrics), see `app/src/dev-mock.ts`. This mode is never shipped in the app. The website's screenshots come from its demo screens: `?demo` (Discover, playing), `?demo=lyrics`, `?demo=artist`, `?demo=album` and `?demo=history`, with real metadata from Deezer in `app/src/demo-data.json`.
-
-Quick tests, without the interface:
+iOS builds require macOS and Xcode:
 
 ```bash
-cargo run -p yato-core --example yt -- "vhs mattyeux"
-cargo run -p yato-core --example deezer -- "stromae alors on danse"   # Deezer search + YouTube audio
-cargo run -p yato-core --example artist -- "sweat snoop dogg"   # full credits, artist pages, albums
-cargo run -p yato-core --example match   # matches the Deezer charts and a few searches to YouTube Music
-cargo run -p yato-core --example import -- "https://open.spotify.com/playlist/…"   # playlist import
-cargo run -p yato-core --example playback   # crossfade, repeat, resume (at zero volume)
-cargo test -p yato-core -- --include-ignored   # including the real signature check
+cd app
+npm install
+npm run ios:init   # once per checkout
+npm run ios:dev    # simulator or connected device
+npm run ios:build
 ```
 
-## Publish a release
+Installing on a physical device requires signing. The release workflow produces an unsigned `.ipa` for installation through SideStore.
 
-The version lives in `Cargo.toml`, `[workspace.package]`:
+To work on the interface in a browser without launching Tauri, run `npm run dev` from `app/` and open `http://localhost:1420`. This development mode uses a mock core and sample data; it is not included in release builds. The site's demo screenshots can be viewed with `?demo`, `?demo=lyrics`, `?demo=artist`, `?demo=album` and `?demo=history`.
 
-```bash
-./scripts/release.sh 0.2.0
-git push && git push origin v0.2.0
+## Project layout
+
+```
+crates/yato-core/   Rust audio player, sources, library, collection and statistics
+app/                SolidJS + Vite interface
+app/src-tauri/      Tauri v2 desktop and mobile bridge
+site/               Static website and its published assets
+docs/               VitePress documentation source
+telemetry/          Optional Cloudflare Worker for first-launch count, feedback and playlist links
 ```
 
-The "Publish a release" GitHub workflow builds macOS and Windows and creates `latest.json` for signed desktop updates. Keep the private updater key at `~/.tauri/veloly-updater.key` and add its contents to the GitHub Actions secret `TAURI_SIGNING_PRIVATE_KEY`. Never commit or share that file. The public key is embedded in `app/src-tauri/tauri.conf.json`. Android updates download the full APK and use the Android installer; iPhone/iPad updates are offered by the Veloly source in SideStore.
+The core is independent of the Tauri interface. The desktop and mobile clients use the same Rust player core with platform-specific audio and file access.
 
-App icons: `app/src-tauri/icons/icon.png` is the source artwork. Run `npx tauri icon <source.png>` from `app/` to rebuild every platform size; `npm run icon:mac` rebuilds `icon.icns` from `icon-macos.svg`.
+## Releases and website
 
-## Website
+The app version is defined in `Cargo.toml` under `[workspace.package]` and mirrored in `app/package.json`. Release builds are produced by GitHub Actions for Windows, macOS, Android and iPhone/iPad. The workflow uploads installers to the GitHub Release; mobile jobs can take longer than desktop jobs because Android and iOS build on separate runners.
 
-The website lives in `site/`; the VitePress documentation source lives in `docs/` and is built into `site/docs/`. Both are published to GitHub Pages by the "Publish the website" workflow on every push to `main` that touches either folder. One-time setup: Settings → Pages → Source: "GitHub Actions". Download links, version and stats come from the GitHub API, so nothing needs updating on release.
-
-## Add a source
-
-Implement `yato_core::MusicSource` (`search`, `featured`, `resolve`) then register it in `app/src-tauri/src/lib.rs`:
-
-```rust
-sources.register(Arc::new(MySource::new(client.clone())));
-```
-
-## Add a language
-
-Add a dictionary to `app/src/i18n.ts` (TypeScript checks that every text is translated) and an entry to `LANGUAGES`.
+The website is the `site/` directory and is hosted on Vercel at [veloly-site.vercel.app](https://veloly-site.vercel.app/). The project is connected to this repository and uses `site/` as its root directory. Documentation source lives in [`docs/`](docs/); its hosted route is not currently included in the Vercel site, so the links above point to its source on GitHub.
 
 ## License
 
-GPL-3.0-or-later (required by rustypipe, which is GPL-3).
+Veloly is distributed under [GPL-3.0-or-later](LICENSE). The upstream project and author are credited above.
 
-Playing YouTube outside its official player is against its terms of service. The YouTube source is provided as is, and everyone is responsible for their own use.
+Playing YouTube audio outside its official player may be restricted by YouTube's terms. Users are responsible for complying with the terms and rights that apply to the services and music they use.
